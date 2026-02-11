@@ -49,22 +49,21 @@ public class UsersService {
         return found;
     }
 
-    /* public User modificaUtente(long userId, UserPayload body){
-        User found = null;
-        for (int i = 0; i < listaUser.size(); i++) {
-            if (listaUser.get(i).getUserId() == userId){
-                found = listaUser.get(i);
-                found.setNome(body.getNome());
-                found.setCognome(body.getCognome());
-                found.setEmail(body.getEmail());
-                found.setDataNascita(body.getDataNascita());
-            }
+    public User modificaUtente(UUID userId, UserPayload body){
+        User found = this.trovaUtente(userId);
+        if(!found.getEmail().equals(body.getEmail())){
+           if(this.usersRepository.existsByEmail(body.getEmail())) throw new ValidationException("Email già in uso");
         }
-        if (found == null) throw new NotFoundException(userId);
+        found.setNome(body.getNome());
+        found.setCognome(body.getCognome());
+        found.setEmail(body.getEmail());
+        found.setDataNascita(body.getDataNascita());
+        this.usersRepository.save(found);
+        System.out.println("L'utente con id " + userId + " è stato aggiornato");
         return found;
     }
 
-    public void eliminaUtente(long userId){
+    /*public void eliminaUtente(long userId){
         User found = null;
         for (int i = 0; i < listaUser.size(); i++) {
             if (listaUser.get(i).getUserId() == userId){
