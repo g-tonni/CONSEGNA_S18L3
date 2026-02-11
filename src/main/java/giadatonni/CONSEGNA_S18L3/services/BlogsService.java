@@ -3,6 +3,7 @@ package giadatonni.CONSEGNA_S18L3.services;
 import giadatonni.CONSEGNA_S18L3.entities.Blog;
 import giadatonni.CONSEGNA_S18L3.exceptions.NotFoundException;
 import giadatonni.CONSEGNA_S18L3.payload.BlogPayload;
+import giadatonni.CONSEGNA_S18L3.repositories.BlogsRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,8 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 public class BlogsService {
+
+    private final BlogsRepository blogsRepository;
 
    /* public Blog postaBlog(BlogPayload body) {
         Blog nuovoBlog = new Blog(body.getCategoria(), body.getTitolo(), body.getContenuto(), body.getTempoLettura());

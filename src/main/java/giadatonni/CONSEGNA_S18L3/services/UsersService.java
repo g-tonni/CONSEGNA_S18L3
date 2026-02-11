@@ -3,6 +3,7 @@ package giadatonni.CONSEGNA_S18L3.services;
 import giadatonni.CONSEGNA_S18L3.entities.User;
 import giadatonni.CONSEGNA_S18L3.exceptions.NotFoundException;
 import giadatonni.CONSEGNA_S18L3.payload.UserPayload;
+import giadatonni.CONSEGNA_S18L3.repositories.UsersRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,8 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 public class UsersService {
+
+    private final UsersRepository usersRepository;
 
    /* public User postaUtente(UserPayload body) {
         User nuovoUtente = new User(body.getNome(), body.getCognome(), body.getEmail(), body.getDataNascita());
