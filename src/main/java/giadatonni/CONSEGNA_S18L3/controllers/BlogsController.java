@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/blogs")
@@ -21,7 +22,7 @@ public class BlogsController {
     @GetMapping
     public Page<Blog> findAll(@RequestParam(defaultValue = "0") int page,
                               @RequestParam(defaultValue = "10") int size,
-                              @RequestParam(defaultValue = "surname") String orderBy){
+                              @RequestParam(defaultValue = "titolo") String orderBy){
         return blogsService.findAll(page, size, orderBy);
     }
 
@@ -31,12 +32,12 @@ public class BlogsController {
         return blogsService.postaBlog(body);
     }
 
-    /*@GetMapping("/{blogId}")
-    public Blog findById(@PathVariable long blogId){
+    @GetMapping("/{blogId}")
+    public Blog findById(@PathVariable UUID blogId){
         return blogsService.trovaBlog(blogId);
     }
 
-    @PutMapping("/{blogId}")
+    /*@PutMapping("/{blogId}")
     public Blog putBlog(@PathVariable long blogId, @RequestBody BlogPayload body){
         return blogsService.modificaBlog(blogId, body);
     }
