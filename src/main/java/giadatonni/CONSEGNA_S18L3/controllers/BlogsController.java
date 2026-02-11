@@ -3,6 +3,7 @@ package giadatonni.CONSEGNA_S18L3.controllers;
 import giadatonni.CONSEGNA_S18L3.entities.Blog;
 import giadatonni.CONSEGNA_S18L3.payload.BlogPayload;
 import giadatonni.CONSEGNA_S18L3.services.BlogsService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +18,11 @@ public class BlogsController {
         this.blogsService = blogsService;
     }
 
-    /*@GetMapping
-    public List<Blog> findAll(){
-        return blogsService.getListaBlog();
+    @GetMapping
+    public Page<Blog> findAll(@RequestParam(defaultValue = "0") int page,
+                              @RequestParam(defaultValue = "10") int size,
+                              @RequestParam(defaultValue = "surname") String orderBy){
+        return blogsService.findAll(page, size, orderBy);
     }
 
     @PostMapping
@@ -28,7 +31,7 @@ public class BlogsController {
         return blogsService.postaBlog(body);
     }
 
-    @GetMapping("/{blogId}")
+    /*@GetMapping("/{blogId}")
     public Blog findById(@PathVariable long blogId){
         return blogsService.trovaBlog(blogId);
     }
