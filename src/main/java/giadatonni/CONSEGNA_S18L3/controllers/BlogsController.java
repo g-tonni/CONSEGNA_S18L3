@@ -17,7 +17,7 @@ public class BlogsController {
         this.blogsService = blogsService;
     }
 
-    @GetMapping
+    /*@GetMapping
     public List<Blog> findAll(){
         return blogsService.getListaBlog();
     }
@@ -42,5 +42,5 @@ public class BlogsController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBlog(@PathVariable long blogId){
         blogsService.eliminaBlog(blogId);
-    }
+    }*/
 }

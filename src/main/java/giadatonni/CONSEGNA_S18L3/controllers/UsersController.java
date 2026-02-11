@@ -18,7 +18,7 @@ public class UsersController {
         this.usersService = usersService;
     }
 
-    @GetMapping
+    /*@GetMapping
     public List<User> findAll(){
         return usersService.getListaUser();
     }
@@ -43,5 +43,5 @@ public class UsersController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable long userId){
         usersService.eliminaUtente(userId);
-    }
+    }*/
 }

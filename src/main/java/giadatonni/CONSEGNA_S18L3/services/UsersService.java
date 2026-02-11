@@ -17,9 +17,8 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 public class UsersService {
-    private List<User> listaUser;
 
-    public User postaUtente(UserPayload body) {
+   /* public User postaUtente(UserPayload body) {
         User nuovoUtente = new User(body.getNome(), body.getCognome(), body.getEmail(), body.getDataNascita());
         this.listaUser.add(nuovoUtente);
         return nuovoUtente;
@@ -61,5 +60,5 @@ public class UsersService {
         }
         if (found == null) throw new NotFoundException(userId);
     }
-
+*/
 }

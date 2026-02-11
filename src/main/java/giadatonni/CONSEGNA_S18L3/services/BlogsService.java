@@ -17,9 +17,8 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 public class BlogsService {
-    private List<Blog> listaBlog;
 
-    public Blog postaBlog(BlogPayload body) {
+   /* public Blog postaBlog(BlogPayload body) {
         Blog nuovoBlog = new Blog(body.getCategoria(), body.getTitolo(), body.getContenuto(), body.getTempoLettura());
         this.listaBlog.add(nuovoBlog);
         return nuovoBlog;
@@ -60,5 +59,5 @@ public class BlogsService {
             }
         }
         if (found == null) throw new NotFoundException(blogId);
-    }
+    }*/
 }
