@@ -1,7 +1,9 @@
 package giadatonni.CONSEGNA_S18L3.controllers;
 
+import giadatonni.CONSEGNA_S18L3.entities.Blog;
 import giadatonni.CONSEGNA_S18L3.entities.User;
 import giadatonni.CONSEGNA_S18L3.payload.UserPayload;
+import giadatonni.CONSEGNA_S18L3.services.BlogsService;
 import giadatonni.CONSEGNA_S18L3.services.UsersService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -43,10 +45,21 @@ public class UsersController {
         return usersService.modificaUtente(userId, body);
     }
 
-    /*
+    @GetMapping("/trovaBlog/{utenteId}")
+    public List<Blog> findByUtenteId(@PathVariable UUID utenteId){
+        return this.usersService.findAllBlogByUtenteId(utenteId);
+    }
+
+    @DeleteMapping("/eliminaBlogByUtente/{utenteId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteListaBlogs(@PathVariable UUID utenteId){
+        this.usersService.deleteAllPostByUtenteId(utenteId);
+    }
+
+
     @DeleteMapping("/{userId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable long userId){
+    public void deleteUser(@PathVariable UUID userId){
         usersService.eliminaUtente(userId);
-    }*/
+    }
 }

@@ -1,9 +1,11 @@
 package giadatonni.CONSEGNA_S18L3.services;
 
+import giadatonni.CONSEGNA_S18L3.entities.Blog;
 import giadatonni.CONSEGNA_S18L3.entities.User;
 import giadatonni.CONSEGNA_S18L3.exceptions.NotFoundException;
 import giadatonni.CONSEGNA_S18L3.exceptions.ValidationException;
 import giadatonni.CONSEGNA_S18L3.payload.UserPayload;
+import giadatonni.CONSEGNA_S18L3.repositories.BlogsRepository;
 import giadatonni.CONSEGNA_S18L3.repositories.UsersRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +28,7 @@ import java.util.UUID;
 public class UsersService {
 
     private final UsersRepository usersRepository;
+    private final BlogsRepository blogsRepository;
 
     public Page<User> findAll(int page, int size, String orderBy){
         if (size > 100) size = 100;
@@ -63,15 +66,21 @@ public class UsersService {
         return found;
     }
 
-    /*public void eliminaUtente(long userId){
-        User found = null;
-        for (int i = 0; i < listaUser.size(); i++) {
-            if (listaUser.get(i).getUserId() == userId){
-                found = listaUser.get(i);
-                listaUser.remove(listaUser.get(i));
-            }
-        }
-        if (found == null) throw new NotFoundException(userId);
+    public List<Blog> findAllBlogByUtenteId(UUID utenteId){
+        return this.blogsRepository.findAllBlogByUtenteId(utenteId);
     }
-*/
+
+    public void deleteAllPostByUtenteId(UUID utenteId){
+        List<Blog> blogsFound = this.findAllBlogByUtenteId(utenteId);
+        blogsFound.forEach(blog -> this.blogsRepository.delete(blog));
+        System.out.println("Elenco blog eliminato");
+    }
+
+    public void eliminaUtente(UUID userId){
+        this.deleteAllPostByUtenteId(userId);
+        User found = this.trovaUtente(userId);
+        this.usersRepository.delete(found);
+        System.out.println("L'utente e tutti i suoi post sono stati eliminati");
+    }
+
 }

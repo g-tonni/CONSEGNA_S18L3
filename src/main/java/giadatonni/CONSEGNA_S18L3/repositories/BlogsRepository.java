@@ -11,6 +11,6 @@ import java.util.UUID;
 @Repository
 public interface BlogsRepository extends JpaRepository<Blog, UUID> {
 
-    @Query("SELECT b FROM Blog b WHERE b.utente.utenteId = :utenteId")
-    public List<Blog> findAllBlogByUtenteId(UUID utenteId);
+    @Query("SELECT b FROM Blog b WHERE b.utente.userId = :utenteId")
+    List<Blog> findAllBlogByUtenteId(UUID utenteId);
 }

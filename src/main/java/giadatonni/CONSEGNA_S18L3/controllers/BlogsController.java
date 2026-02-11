@@ -47,9 +47,4 @@ public class BlogsController {
     public void deleteBlog(@PathVariable UUID blogId){
         blogsService.eliminaBlog(blogId);
     }
-
-    @GetMapping("/{utenteId}")
-    public List<Blog> findByUtenteId(UUID utenteId){
-        return this.blogsService.findAllBlogByUtenteId(utenteId);
-    }
 }
