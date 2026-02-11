@@ -37,14 +37,14 @@ public class BlogsController {
         return blogsService.trovaBlog(blogId);
     }
 
-    /*@PutMapping("/{blogId}")
-    public Blog putBlog(@PathVariable long blogId, @RequestBody BlogPayload body){
+    @PutMapping("/{blogId}")
+    public Blog putBlog(@PathVariable UUID blogId, @RequestBody BlogPayload body){
         return blogsService.modificaBlog(blogId, body);
     }
 
     @DeleteMapping("/{blogId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteBlog(@PathVariable long blogId){
+    public void deleteBlog(@PathVariable UUID blogId){
         blogsService.eliminaBlog(blogId);
-    }*/
+    }
 }

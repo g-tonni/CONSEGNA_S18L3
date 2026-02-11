@@ -51,29 +51,22 @@ public class BlogsService {
         return found;
     }
 
-    /* public Blog modificaBlog(long blogId, BlogPayload body){
-        Blog found = null;
-        for (int i = 0; i < listaBlog.size(); i++) {
-            if (listaBlog.get(i).getBlogId() == blogId){
-                found = listaBlog.get(i);
-                found.setCategoria(body.getCategoria());
-                found.setTitolo(body.getTitolo());
-                found.setContenuto(body.getContenuto());
-                found.setTempoLettura(body.getTempoLettura());
-            }
-        }
-        if (found == null) throw new NotFoundException(blogId);
+    public Blog modificaBlog(UUID blogId, BlogPayload body){
+        Blog found = this.trovaBlog(blogId);
+        User userFound = this.usersService.trovaUtente(UUID.fromString(body.getUtenteId()));
+        found.setCategoria(body.getCategoria());
+        found.setTitolo(body.getTitolo());
+        found.setContenuto(body.getContenuto());
+        found.setTempoLettura(body.getTempoLettura());
+        found.setUtente(userFound);
+        this.blogsRepository.save(found);
+        System.out.println("Blog aggiornato correttamente");
         return found;
     }
 
-    public void eliminaBlog(long blogId){
-        Blog found = null;
-        for (int i = 0; i < listaBlog.size(); i++) {
-            if (listaBlog.get(i).getBlogId() == blogId){
-                found = listaBlog.get(i);
-                listaBlog.remove(listaBlog.get(i));
-            }
-        }
-        if (found == null) throw new NotFoundException(blogId);
-    }*/
+    public void eliminaBlog(UUID blogId){
+        Blog found = this.trovaBlog(blogId);
+        this.blogsRepository.delete(found);
+        System.out.println("Blog eliminato");
+    }
 }
