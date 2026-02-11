@@ -69,4 +69,8 @@ public class BlogsService {
         this.blogsRepository.delete(found);
         System.out.println("Blog eliminato");
     }
+
+    public List<Blog> findAllBlogByUtenteId(UUID utenteId){
+        return this.blogsRepository.findAllBlogByUtenteId(utenteId);
+    }
 }
